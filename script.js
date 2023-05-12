@@ -1,10 +1,7 @@
-//let playerScore = 0;
-//let computerScore = 0;
-//let ties = 0;
+let playerScore = 0;
+let computerScore = 0;
 
 const arr = ['rock', 'paper', 'scissors'];
-
-const computerSelection = getComputerChoice(arr);
 
 const playerWinRound = "You Win!";
 const tie = "It's a tie.";
@@ -15,70 +12,114 @@ let paper = document.querySelector('#paper');
 let scissors = document.querySelector('#scissors');
 
 
-rock.addEventListener('click', playGame("rock", computerSelection));
-paper.addEventListener('click', playGame("paper", computerSelection));
-scissors.addEventListener('click', playGame("scissors", computerSelection));
+rock.addEventListener('click', () => playGame("rock", getComputerChoice(arr)));
+paper.addEventListener('click', () => playGame("paper", getComputerChoice(arr)));
+scissors.addEventListener('click', () => playGame("scissors", getComputerChoice(arr)));
+
+let score = document.querySelector('#currentGame');
+let scoreBoard = document.querySelector('#scoreBoard');
+scoreBoard.innerHTML = "Player: " + playerScore +"   Computer: " + computerScore;
 
 function playGame(playerSelection, computerSelection) {
-    if (playerSelection === computerSelection) {
+    if ((playerScore === 5) || (computerScore === 5)) {
+      computerScore = 0;
+      playerScore = 0;
+      scoreBoard.innerHTML = "Player: " + playerScore +"   Computer: " + computerScore;
+      score.innerHTML = "Game Reset.  Please choose again to start a new game."; 
+    }
+    else if (playerSelection === computerSelection) {
             let result = tie;
-            console.log(playerSelection);
-            console.log(result);
+            score.innerHTML = "You chose " + playerSelection + ".  The computer chose " + computerSelection + ".  " + result;
          }
          else if ((playerSelection === "rock") && (computerSelection === "scissors")) {
             let result = playerWinRound;
-            console.log(playerSelection);
-            console.log(result);
+            if (playerScore === 4){
+                score.innerHTML =  "You chose " + playerSelection + ".  The computer chose " + computerSelection + ".  You were the first to 5 points.  You won the game!  Push any button to reset the game.";
+                playerScore += 1;
+                scoreBoard.innerHTML = "Player: " + playerScore +"   Computer: " + computerScore;
+            }
+            else {
+               score.innerHTML = "You chose " + playerSelection + ".  The computer chose " + computerSelection + ".  " + result;
+               playerScore += 1;
+               scoreBoard.innerHTML = "Player: " + playerScore +"   Computer: " + computerScore;
+            }
          }
          else if ((playerSelection === "rock") && (computerSelection === "paper")) {
             let result = computerWinRound;
-            console.log(playerSelection);
-            console.log(result);
-         }
+            if (computerScore === 4){
+               score.innerHTML =  "You chose " + playerSelection + ".  The computer chose " + computerSelection + ".  The computer was the first to 5 points.  The computer won the game.  Better luck next time!  Push any button to reset the game.";
+               computerScore += 1;
+               scoreBoard.innerHTML = "Player: " + playerScore +"   Computer: " + computerScore;
+           }
+           else {
+            computerScore += 1;
+            scoreBoard.innerHTML = "Player: " + playerScore +"   Computer: " + computerScore;
+            score.innerHTML = "You chose " + playerSelection + ".  The computer chose " + computerSelection + ".  " + result;
+         }}
          else if ((playerSelection === "paper") && (computerSelection === "rock")) {
             let result = playerWinRound;
-            console.log(playerSelection);
-            console.log(result);
+            if (playerScore === 4){
+                score.innerHTML =  "You chose " + playerSelection + ".  The computer chose " + computerSelection + ".  You were the first to 5 points.  You won the game!  Push any button to reset the game.";
+                playerScore += 1;
+                scoreBoard.innerHTML = "Player: " + playerScore +"   Computer: " + computerScore;
+            }
+            else {
+            playerScore += 1;
+            scoreBoard.innerHTML = "Player: " + playerScore +"   Computer: " + computerScore;
+            score.innerHTML = "You chose " + playerSelection + ".  The computer chose " + computerSelection + ".  " + result;
          }
+      }
          else if ((playerSelection === "paper") && (computerSelection === "scissors")) {
             let result = computerWinRound;
-            console.log(playerSelection);
-            console.log(result);
+            if (computerScore === 4){
+               score.innerHTML =  "You chose " + playerSelection + ".  The computer chose " + computerSelection + ".  The computer was the first to 5 points.  The computer won the game.  Better luck next time!  Push any button to reset the game.";
+               computerScore += 1;
+               scoreBoard.innerHTML = "Player: " + playerScore +"   Computer: " + computerScore;
+           }
+           else {
+            computerScore += 1;
+            scoreBoard.innerHTML = "Player: " + playerScore +"   Computer: " + computerScore;
+            score.innerHTML = "You chose " + playerSelection + ".  The computer chose " + computerSelection + ".  " + result;
           }
+         }
          else if ((playerSelection === "scissors") && (computerSelection === "rock")) {
             let result = computerWinRound;
-            console.log(playerSelection);
-            console.log(result);
-         }
+            if (computerScore === 4){
+               score.innerHTML =  "You chose " + playerSelection + ".  The computer chose " + computerSelection + ".  The computer was the first to 5 points.  The computer won the game.  Better luck next time!  Push any button to reset the game.";
+               computerScore += 1;
+               scoreBoard.innerHTML = "Player: " + playerScore +"   Computer: " + computerScore;
+           }
+           else {
+            computerScore += 1;
+            scoreBoard.innerHTML = "Player: " + playerScore +"   Computer: " + computerScore;
+            score.innerHTML = "You chose " + playerSelection + ".  The computer chose " + computerSelection + ".  " + result;
+         }}
          else if ((playerSelection === "scissors") && (computerSelection === "paper")) {
             let result = playerWinRound;
-            console.log(playerSelection);
-            console.log(result);
+            if (playerScore === 4){
+                score.innerHTML =  "You chose " + playerSelection + ".  The computer chose " + computerSelection + ".  You were the first to 5 points.  You won the game!  Push any button to reset the game.";
+                playerScore += 1;
+                scoreBoard.innerHTML = "Player: " + playerScore +"   Computer: " + computerScore;
+            }
+            else {
+            playerScore += 1;
+            scoreBoard.innerHTML = "Player: " + playerScore +"   Computer: " + computerScore;
+            score.innerHTML = "You chose " + playerSelection + ".  The computer chose " + computerSelection + ".  " + result;
          }
+      }
 }
-
 
 function getComputerChoice(arr) {
-    const randomIndex = Math.floor(Math.random() * arr.length);
-    const computerSelection = arr[randomIndex];
+    let randomIndex = Math.floor(Math.random() * arr.length);
+    let computerSelection = arr[randomIndex];
     return computerSelection;
 }
-  
-//loop
-//for (let i=0; i <100; i++) {
-  //  const computerSelection = getComputerChoice(arr);
-    //let roundResult = playRound(playerSelection, computerSelection);
-//    console.log(playerSelection);
-  //  console.log(computerSelection);
-   // console.log(roundResult);
-    //gameScore(roundResult);
-    //console.log("Your score is " + playerScore);
-    //console.log("The Computer's score is " + computerScore);
+ 
 
- //  if (playerScore === 5 || computerScore === 5) {
-   //     endGame();
-   //     break;
-    //}
+
+ //if (playerScore === 5 || computerScore === 5) {
+  //      endGame();
+  //  }
     
 //}
 
