@@ -9,7 +9,7 @@ const computerSelection = getComputerChoice(arr);
 const playerWinRound = "You Win!";
 const tie = "It's a tie.";
 const computerWinRound = "Sorry, you lose.";
-
+ 
 let rock = document.querySelector('#rock');
 let paper = document.querySelector('#paper');
 let scissors = document.querySelector('#scissors');
